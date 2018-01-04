@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-run id="2" testcasecount="1" result="Passed" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="1" engine-version="3.7.0.0" clr-version="4.0.30319.42000" start-time="2017-12-16 08:30:24Z" end-time="2017-12-16 08:30:27Z" duration="3.311317">
+  <command-line><![CDATA["D:\Roshan\Saturday Traning\NunitDemo\NunitDemo.Test\bin\Debug\Scripts\..\..\..\..\packages\NUnit.ConsoleRunner.3.7.0\tools\nunit3-console.exe" /work:Reporting  --out:TestResult.txt ..\NunitDemo.Test.dll]]></command-line>
+  <test-suite type="Assembly" id="0-1002" name="NunitDemo.Test.dll" fullname="D:\Roshan\Saturday Traning\NunitDemo\NunitDemo.Test\bin\Debug\NunitDemo.Test.dll" runstate="Runnable" testcasecount="1" result="Passed" start-time="2017-12-16 08:30:27Z" end-time="2017-12-16 08:30:27Z" duration="0.089869" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1">
+    <environment framework-version="3.9.0.0" clr-version="4.0.30319.42000" os-version="Microsoft Windows NT 6.1.7601.65536" platform="Win32NT" cwd="D:\Roshan\Saturday Traning\NunitDemo\NunitDemo.Test\bin\Debug\Scripts" machine-name="ZIL203" user="roshan.rahood" user-domain="PERFICIENT" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="DisposeRunners" value="True" />
+      <setting name="WorkDirectory" value="Reporting" />
+      <setting name="ImageRuntimeVersion" value="4.0.30319" />
+      <setting name="ImageTargetFrameworkName" value=".NETFramework,Version=v4.6.1" />
+      <setting name="ImageRequiresX86" value="False" />
+      <setting name="ImageRequiresDefaultAppDomainAssemblyResolver" value="False" />
+      <setting name="NumberOfTestWorkers" value="4" />
+    </settings>
+    <properties>
+      <property name="_PID" value="2672" />
+      <property name="_APPDOMAIN" value="domain-" />
+    </properties>
+    <test-suite type="TestSuite" id="0-1003" name="NunitDemo" fullname="NunitDemo" runstate="Runnable" testcasecount="1" result="Passed" start-time="2017-12-16 08:30:27Z" end-time="2017-12-16 08:30:27Z" duration="0.070260" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1">
+      <test-suite type="TestSuite" id="0-1004" name="Test" fullname="NunitDemo.Test" runstate="Runnable" testcasecount="1" result="Passed" start-time="2017-12-16 08:30:27Z" end-time="2017-12-16 08:30:27Z" duration="0.069392" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1">
+        <test-suite type="TestFixture" id="0-1000" name="MathsOperationTest" fullname="NunitDemo.Test.MathsOperationTest" classname="NunitDemo.Test.MathsOperationTest" runstate="Runnable" testcasecount="1" result="Passed" start-time="2017-12-16 08:30:27Z" end-time="2017-12-16 08:30:27Z" duration="0.065764" total="1" passed="1" failed="0" warnings="0" inconclusive="0" skipped="0" asserts="1">
+          <test-case id="0-1001" name="TestAddition" fullname="NunitDemo.Test.MathsOperationTest.TestAddition" methodname="TestAddition" classname="NunitDemo.Test.MathsOperationTest" runstate="Runnable" seed="177244516" result="Passed" start-time="2017-12-16 08:30:27Z" end-time="2017-12-16 08:30:27Z" duration="0.038616" asserts="1" />
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
