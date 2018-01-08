@@ -13,7 +13,7 @@ pipeline {
 			  script
 			  {
 				scm_map = checkout scm
-				//GIT_BRANCH = scm_map['GIT_BRANCH']
+				GIT_BRANCH = scm_map['GIT_BRANCH']
 				// get just the branch name minus the remote only splitting on first
 				// match in case the rest of the branch has more '/' chars.
 				//GIT_BRANCH_NAME = GIT_BRANCH.split('/',2)[1]
