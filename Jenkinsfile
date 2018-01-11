@@ -1,6 +1,16 @@
 pipeline {
     agent any
 
+	
+	environment {
+    // Globally defined
+    // GIT_CREDSID
+    // NEXUS_URL
+
+    // Application Specific    
+    NEXUS_ARTIFACTID="NunitDemo.Test.dll"
+	NEXUS_IQ_STAGE="release"
+	}
     stages 
 	{
 		stage( 'Checkout Source' ) 
@@ -31,14 +41,24 @@ pipeline {
 			bat "\"${tool 'MsBuild 14.0'}\" NunitDemo.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"   
 			}
 		}//End Build source code 
+				
+		stage( "package into zip file" ){
+		  steps{
+			dir( "build" ){
+			   sh "zip -r --quiet ../${ARTIFACT_FILENAME} *"
+			 }
+		  }
+		}
 		
-		stage( 'Check Policy' ) 
-		{
-		//Check policy
-		  steps
-		  {
-			nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'DemoNunit', iqStage: 'build', jobCredentialsId: ''
-			}
-		}//End Check policy		
+		stage( "IQ Scans") {
+		  steps{
+			sh "echo 'Uploading to IQ: ${NEXUS_ARTIFACTID} stage: ${NEXUS_IQ_STAGE} file: ${ARTIFACT_FILENAME}'"
+			nexusPolicyEvaluation failBuildOnNetworkError: false,
+				iqApplication: NEXUS_ARTIFACTID,
+				iqScanPatterns: [[scanPattern: ARTIFACT_FILENAME ]],
+				iqStage: NEXUS_IQ_STAGE,
+				jobCredentialsId: ''
+		  }
+		} // stage
 	}
 }
