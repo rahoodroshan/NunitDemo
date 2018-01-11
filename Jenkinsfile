@@ -59,7 +59,7 @@ pipeline {
 		stage( "package into zip file" ){
 		  steps{
 			
-			   7z a -tzip ARTIFACT_FILENAME ../bin	 
+			 bat  "7z a -tzip ARTIFACT_FILENAME ../bin"	 
 		  }
 		}	
 	}
