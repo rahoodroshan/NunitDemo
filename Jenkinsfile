@@ -45,20 +45,9 @@ pipeline {
 		stage( "package into zip file" ){
 		  steps{
 			dir( "build" ){
-			   sh "zip -r --quiet ../${ARTIFACT_FILENAME} *"
+			   sh "zip -r --quiet ./bin/debug/*.*"
 			 }
 		  }
-		}
-		
-		stage( "IQ Scans") {
-		  steps{
-			sh "echo 'Uploading to IQ: ${NEXUS_ARTIFACTID} stage: ${NEXUS_IQ_STAGE} file: ${ARTIFACT_FILENAME}'"
-			nexusPolicyEvaluation failBuildOnNetworkError: false,
-				iqApplication: NEXUS_ARTIFACTID,
-				iqScanPatterns: [[scanPattern: ARTIFACT_FILENAME ]],
-				iqStage: NEXUS_IQ_STAGE,
-				jobCredentialsId: ''
-		  }
-		} // stage
+		}		
 	}
 }
