@@ -59,7 +59,7 @@ pipeline {
 		stage( "package into zip file" ){
 		  steps{
 			
-			 bat  "7z a -tzip ARTIFACT_FILENAME ../bin"	 
+			 bat  "Compress-Archive /NunitDemo.Test/bin/Release/* -DestinationPath .../output.zip"	 
 		  }
 		}	
 	}
