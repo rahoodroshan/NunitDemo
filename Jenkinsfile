@@ -61,7 +61,7 @@ pipeline {
 		//Build source code
 		  steps
 		  {
-			bat 'wzzip.exe -a -p -r "C:\\YourFolderToImportFrom\\DataFiles_20130903.zip" "\\NunitDemo.Test\\bin\\Release\\*" '
+			bat '"C:\\Program Files\\7-Zip\\7z.exe" a  -r myzip.zip -w NunitDemo.Test -mem=AES256'
 			}
 		}//End Build source code 	
 	}
