@@ -55,5 +55,14 @@ pipeline {
 				"C:\\Program Files (x86)\\Jenkins\\workspace\\JenkinsFileSample\\packages\\ReportUnit.1.2.1\\tools\\ReportUnit.exe" "Reporting" "Reporting\\Result"'''
 			}
 		}//End Build source code 	
+		
+		stage( 'Package into zip file' ) 
+		{
+		//Build source code
+		  steps
+		  {
+			wzzip.exe -a -p -r "C:\\YourFolderToImportFrom\\DataFiles_20130903.zip" "\\NunitDemo.Test\\bin\\Release\\*" 
+			}
+		}//End Build source code 	
 	}
 }
