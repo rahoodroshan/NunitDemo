@@ -46,7 +46,7 @@ pipeline {
 		  steps{
 			dir( "build" ){
 			   //bat "zip -r --quiet ./bin/debug/*.*"
-				bat CScript  _zipIt.vbs  ./bin/debug/*.*  C:\someArchive.zip
+				bat "CScript  _zipIt.vbs  ./bin/debug/*.*  C:\someArchive.zip"
 			 }
 		  }
 		}		
