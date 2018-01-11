@@ -37,7 +37,7 @@ pipeline {
 		//Check policy
 		  steps
 		  {
-			bat "nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'DemoNunit', iqStage: 'build', jobCredentialsId: ''"   
+			nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'DemoNunit', iqStage: 'build', jobCredentialsId: ''
 			}
 		}//End Check policy		
 	}
