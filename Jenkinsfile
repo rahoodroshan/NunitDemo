@@ -60,7 +60,7 @@ pipeline {
 		  steps{
 			
 			 //bat  "Compress-Archive /NunitDemo.Test/bin/Release/* -DestinationPath .../output.zip"	 
-			 wzzip.exe -a -p -r "C:\YourFolderToImportFrom\DataFiles_20130903.zip" "\NunitDemo.Test\bin\Release\*" 
+			 wzzip.exe -a -p -r "C:\\YourFolderToImportFrom\\DataFiles_20130903.zip" "\\NunitDemo.Test\\bin\\Release\\*" 
 		  }
 		}	
 	}
