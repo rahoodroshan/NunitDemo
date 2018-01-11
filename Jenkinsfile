@@ -8,8 +8,9 @@ pipeline {
     // NEXUS_URL
 
     // Application Specific    
-    NEXUS_ARTIFACTID="NunitDemo.Test.dll"
+    NEXUS_ARTIFACTID="bin"
 	NEXUS_IQ_STAGE="release"
+	ARTIFACT_FILENAME="${NEXUS_ARTIFACTID}.zip"
 	}
     stages 
 	{
@@ -53,6 +54,13 @@ pipeline {
 
 				"C:\\Program Files (x86)\\Jenkins\\workspace\\JenkinsFileSample\\packages\\ReportUnit.1.2.1\\tools\\ReportUnit.exe" "Reporting" "Reporting\\Result"'''
 			}
-		}//End Build source code 		
+		}//End Build source code 	
+
+		stage( "package into zip file" ){
+		  steps{
+			
+			   7z a -tzip ARTIFACT_FILENAME ../bin	 
+		  }
+		}	
 	}
 }
