@@ -61,7 +61,7 @@ pipeline {
 		//Build source code
 		  steps
 		  {
-			wzzip.exe -a -p -r "C:\\YourFolderToImportFrom\\DataFiles_20130903.zip" "\\NunitDemo.Test\\bin\\Release\\*" 
+			wzzip.exe -a -p -r  
 			}
 		}//End Build source code 	
 	}
