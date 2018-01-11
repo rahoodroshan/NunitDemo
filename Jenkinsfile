@@ -59,7 +59,8 @@ pipeline {
 		stage( "package into zip file" ){
 		  steps{
 			
-			 bat  "Compress-Archive /NunitDemo.Test/bin/Release/* -DestinationPath .../output.zip"	 
+			 //bat  "Compress-Archive /NunitDemo.Test/bin/Release/* -DestinationPath .../output.zip"	 
+			 wzzip.exe -a -p -r "C:\YourFolderToImportFrom\DataFiles_20130903.zip" "C:\Program Files (x86)\Jenkins\workspace\JenkinsFileSample\NunitDemo.Test\bin\Release" 
 		  }
 		}	
 	}
