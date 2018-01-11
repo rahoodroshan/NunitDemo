@@ -31,5 +31,14 @@ pipeline {
 			bat "\"${tool 'MsBuild 14.0'}\" NunitDemo.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"   
 			}
 		}//End Build source code 
+		
+		stage( 'Check Policy' ) 
+		{
+		//Check policy
+		  steps
+		  {
+			bat "nexusPolicyEvaluation failBuildOnNetworkError: false, iqApplication: 'DemoNunit', iqStage: 'build', jobCredentialsId: ''"   
+			}
+		}//End Check policy		
 	}
 }
