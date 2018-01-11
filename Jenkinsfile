@@ -8,9 +8,9 @@ pipeline {
     // NEXUS_URL
 
     // Application Specific    
-    NEXUS_ARTIFACTID="bin"
+    NEXUS_ARTIFACTID="NunitDemo"
 	NEXUS_IQ_STAGE="release"
-	ARTIFACT_FILENAME="myzip.zip"
+	ARTIFACT_FILENAME="NunitDemo.zip"
 	}
     stages 
 	{
@@ -61,7 +61,7 @@ pipeline {
 		//Build source code
 		  steps
 		  {
-			bat '"C:\\Program Files\\7-Zip\\7z.exe" a  -r myzip.zip -w NunitDemo.Test\\bin\\Release\\* -mem=AES256'
+			bat '"C:\\Program Files\\7-Zip\\7z.exe" a  -r NunitDemo.zip -w NunitDemo.Test\\bin\\Release\\* -mem=AES256'
 			}
 		}//End Build source code 	
 		
