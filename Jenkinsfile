@@ -45,7 +45,7 @@ pipeline {
 		stage( "package into zip file" ){
 		  steps{
 			dir( "build" ){
-			   sh "zip -r --quiet ./bin/debug/*.*"
+			   bat "zip -r --quiet ./bin/debug/*.*"
 			 }
 		  }
 		}		
