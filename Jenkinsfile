@@ -41,14 +41,18 @@ pipeline {
 			bat "\"${tool 'MsBuild 14.0'}\" NunitDemo.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"   
 			}
 		}//End Build source code 
-				
-		stage( "package into zip file" ){
-		  steps{
-			dir( "build" ){
-			   //bat "zip -r --quiet ./bin/debug/*.*"
-				bat "CScript  _zipIt.vbs  ./bin/debug/*.*  C:/someArchive.zip"
-			 }
-		  }
-		}		
+		
+		stage( 'Test' ) 
+		{
+		//Build source code
+		  steps
+		  {
+			bat '''"C:\\Program Files (x86)\\Jenkins\\workspace\\JenkinsFileSample\\packages\\OpenCover.4.6.519\\tools\\OpenCover.Console.exe" -target:"C:\\Program Files (x86)\\Jenkins\\workspace\\JenkinsFileSample\\packages\\NUnit.ConsoleRunner.3.7.0\\tools\\nunit3-console.exe" -targetargs:"/work:Reporting --out:TestResult.txt .\\NunitDemo.Test.dll"  -output:"CodeCoverageResult.xml"
+
+				"C:\\Program Files (x86)\\Jenkins\\workspace\\JenkinsFileSample\\packages\\ReportGenerator.3.1.0\\tools\\ReportGenerator.exe" "-reports:CodeCoverageResult.xml" "-targetdir:CodeCoverageReport"
+
+				"C:\\Program Files (x86)\\Jenkins\\workspace\\JenkinsFileSample\\packages\\ReportUnit.1.2.1\\tools\\ReportUnit.exe" "Reporting" "Reporting\\Result"'''
+			}
+		}//End Build source code 		
 	}
 }
