@@ -10,7 +10,7 @@ pipeline {
     // Application Specific    
     NEXUS_ARTIFACTID="bin"
 	NEXUS_IQ_STAGE="release"
-	ARTIFACT_FILENAME="${NEXUS_ARTIFACTID}.zip"
+	ARTIFACT_FILENAME="myzip.zip"
 	}
     stages 
 	{
@@ -64,5 +64,16 @@ pipeline {
 			bat '"C:\\Program Files\\7-Zip\\7z.exe" a  -r myzip.zip -w NunitDemo.Test\\bin\\Release\\* -mem=AES256'
 			}
 		}//End Build source code 	
+		
+		stage( "IQ Scans") {
+		  steps{
+			bat "echo 'Uploading to IQ: ${NEXUS_ARTIFACTID} stage: ${NEXUS_IQ_STAGE} file: ${ARTIFACT_FILENAME}'"
+			nexusPolicyEvaluation failBuildOnNetworkError: false,
+				iqApplication: NEXUS_ARTIFACTID,
+				iqScanPatterns: [[scanPattern: ARTIFACT_FILENAME ]],
+				iqStage: NEXUS_IQ_STAGE,
+				jobCredentialsId: ''
+		  }
+		} // stage	
 	}
 }
