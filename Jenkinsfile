@@ -39,28 +39,7 @@ pipeline {
 			     bat "echo 'GIT_BRANCH_NAME: ${GIT_BRANCH_NAME}'"
 			}
 		}//End Checkout Source   
-		
-		stage( "Setup Environment Variables" ) {
-		  steps{
-			script {
-			 
-			  def props = readJSON file: 'packages.config'
-			  def version = props['version']
-
-			  TARGET_VERSION = "$version-$BUILD_TIMESTAMP_STRING"
-			  VERSION_TAG="${TARGET_VERSION}"
-			  ARTIFACT_FILENAME="${NEXUS_ARTIFACTID}-${VERSION_TAG}.zip"
-			  // modify build name to match
-			  currentBuild.displayName = "${VERSION_TAG}"
-			}
-			// output some information about the environment we just setup
-			bat "echo 'package.json version: ${TARGET_VERSION}'"
-			bat "echo 'version_tag: ${VERSION_TAG}'"
-			bat "echo 'artifact_filename: ${ARTIFACT_FILENAME}'"
-		  }
-		}
-		
-		
+				
 		stage( 'Build' ) 
 		{
 		//Build source code
@@ -105,7 +84,7 @@ pipeline {
 		
 		stage( "Upload to Nexus" ) {
 		  steps{			
-			  nexusArtifactUploader artifacts: [[artifactId: 'abc.zip', classifier: '', file: 'abc.zip', type: '.zip']], 
+			  nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit.zip', classifier: '', file: 'DemoNunit.zip', type: '.zip']], 
 			  credentialsId: 'NexusRepoCredentials', groupId: NEXUS_GROUP, 
 			  nexusUrl: 'localhost:9091', 
 			  nexusVersion: 'nexus3', 
