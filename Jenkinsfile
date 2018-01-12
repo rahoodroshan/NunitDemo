@@ -84,7 +84,7 @@ pipeline {
 			  credentialsId: 'NexusRepoCredentials', groupId: NEXUS_GROUP, 
 			  nexusUrl: 'localhost:9091', 
 			  nexusVersion: 'nexus3', 
-			  protocol: 'http', 
+			  protocol: 'https', 
 			  repository: 'maven-central', 
 			  version: '2.33'
 		  }
