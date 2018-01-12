@@ -86,7 +86,7 @@ pipeline {
 		  steps{			
 			  nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit.zip', classifier: '', file: 'DemoNunit.zip', type: '.zip']], 
 			  credentialsId: 'NexusRepoCredentials', groupId: NEXUS_GROUP, 
-			  nexusUrl: 'localhost:9091', 
+			  nexusUrl: 'zil271:9091', 
 			  nexusVersion: 'nexus3', 
 			  protocol: 'http', 
 			  repository: 'maven-central', 
