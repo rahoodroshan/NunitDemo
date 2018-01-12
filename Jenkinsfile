@@ -86,7 +86,7 @@ pipeline {
 			  nexusVersion: 'nexus3', 
 			  protocol: 'https', 
 			  repository: 'maven-central', 
-			  version: '2.33
+			  version: '2.33'
 		  }
 		}
 	}
