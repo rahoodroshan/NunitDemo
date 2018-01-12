@@ -83,14 +83,8 @@ pipeline {
 		} // stage	
 		
 		stage( "Upload to Nexus" ) {
-		  steps{			
-			  nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit.zip', classifier: '', file: 'DemoNunit.zip', type: 'zip']], 
-			  credentialsId: 'NexusRepoCredentials', groupId: NEXUS_GROUP, 
-			  nexusUrl: 'zil271:9091', 
-			  nexusVersion: 'nexus3', 
-			  protocol: 'http', 
-			  repository: 'maven-central', 
-			  version: '2.33'
+		  steps{						 
+			  curl -u admin:admin123 --upload-file DemoNunit.zip http://localhost:9091/repository/maven-central/maven-public/DemoNunit/2.33/DemoNunit-2.33.zip
 		  }
 		}
 	}
