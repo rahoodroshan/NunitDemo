@@ -84,7 +84,7 @@ pipeline {
 		
 		stage( "Upload to Nexus" ) {
 		  steps{			
-			  nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit.zip', classifier: '', file: 'DemoNunit.zip', type: '.zip']], 
+			  nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit.zip', classifier: '', file: 'DemoNunit.zip', type: 'zip']], 
 			  credentialsId: 'NexusRepoCredentials', groupId: NEXUS_GROUP, 
 			  nexusUrl: 'zil271:9091', 
 			  nexusVersion: 'nexus3', 
