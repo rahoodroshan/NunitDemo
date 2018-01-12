@@ -12,7 +12,7 @@ pipeline {
 	NEXUS_IQ_STAGE="release"
 	ARTIFACT_FILENAME="DemoNunit.zip"
 	NEXUS_REPOSITORY="eBiz-RC"
-    NEXUS_GROUP="OnlineBind"
+    NEXUS_GROUP="maven-public"
 	}
     stages 
 	{
@@ -82,9 +82,9 @@ pipeline {
 		  steps{			
 			  nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit.zip', classifier: '', file: 'DemoNunit.zip', type: '.zip']], 
 			  credentialsId: 'NexusRepoCredentials', groupId: NEXUS_GROUP, 
-			  nexusUrl: 'https://localhost:9091', 
+			  nexusUrl: 'http://localhost:9091', 
 			  nexusVersion: 'nexus3', 
-			  protocol: 'https', 
+			  protocol: 'http', 
 			  repository: 'maven-central', 
 			  version: '2.33'
 		  }
