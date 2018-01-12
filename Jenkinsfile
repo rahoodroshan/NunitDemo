@@ -80,19 +80,6 @@ pipeline {
 				iqStage: NEXUS_IQ_STAGE,
 				jobCredentialsId: ''
 		  }
-		} // stage	
-		
-		stage( "Upload to Nexus" ) {
-		  steps{	
-			  nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit', classifier: '', file: 'DemoNunit.zip', type: '.zip']], 
-			  credentialsId: 'zil341Credentials', 
-			  groupId: 'nuget-group', 
-			  nexusUrl: 'zil341:9084', 
-			  nexusVersion: 'nexus3', 
-			  protocol: 'http', 
-			  repository: 'NuGet_NUnitTestProject', 
-			  version: '2.33'			 
-		  }
-		}
+		} // stage			
 	}
 }
