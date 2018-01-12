@@ -1,7 +1,9 @@
 pipeline {
     agent any
 
-	
+	options {
+    disableConcurrentBuilds()
+  }
 	environment {
     // Globally defined
     // GIT_CREDSID
@@ -13,6 +15,8 @@ pipeline {
 	ARTIFACT_FILENAME="DemoNunit.zip"
 	NEXUS_REPOSITORY="eBiz-RC"
     NEXUS_GROUP="maven-public"
+	TARGET_VERSION=''
+	VERSION_TAG=''
 	}
     stages 
 	{
@@ -35,6 +39,27 @@ pipeline {
 			     bat "echo 'GIT_BRANCH_NAME: ${GIT_BRANCH_NAME}'"
 			}
 		}//End Checkout Source   
+		
+		stage( "Setup Environment Variables" ) {
+		  steps{
+			script {
+			 
+			  def props = readJSON file: 'packages.config'
+			  def version = props['version']
+
+			  TARGET_VERSION = "$version-$BUILD_TIMESTAMP_STRING"
+			  VERSION_TAG="${TARGET_VERSION}"
+			  ARTIFACT_FILENAME="${NEXUS_ARTIFACTID}-${VERSION_TAG}.zip"
+			  // modify build name to match
+			  currentBuild.displayName = "${VERSION_TAG}"
+			}
+			// output some information about the environment we just setup
+			bat "echo 'package.json version: ${TARGET_VERSION}'"
+			bat "echo 'version_tag: ${VERSION_TAG}'"
+			bat "echo 'artifact_filename: ${ARTIFACT_FILENAME}'"
+		  }
+		}
+		
 		
 		stage( 'Build' ) 
 		{
