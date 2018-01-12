@@ -11,6 +11,8 @@ pipeline {
     NEXUS_ARTIFACTID="DemoNunit"
 	NEXUS_IQ_STAGE="release"
 	ARTIFACT_FILENAME="DemoNunit.zip"
+	NEXUS_REPOSITORY="eBiz-RC"
+    NEXUS_GROUP="OnlineBind"
 	}
     stages 
 	{
@@ -75,5 +77,17 @@ pipeline {
 				jobCredentialsId: ''
 		  }
 		} // stage	
+		
+		stage( "Upload to Nexus" ) {
+		  steps{			
+			  nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit.zip', classifier: '', file: 'DemoNunit.zip', type: '.zip']], 
+			  credentialsId: 'NexusRepoCredentials', groupId: NEXUS_GROUP, 
+			  nexusUrl: 'https://localhost:9091', 
+			  nexusVersion: 'nexus3', 
+			  protocol: 'https', 
+			  repository: 'maven-central', 
+			  version: '2.33
+		  }
+		}
 	}
 }
