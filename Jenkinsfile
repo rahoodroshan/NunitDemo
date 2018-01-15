@@ -85,14 +85,14 @@ pipeline {
 		
 		stage( "Upload to Nexus" ) {
 		  steps{
-			nexusArtifactUploader artifacts: [[artifactId: NEXUS_ARTIFACTID, classifier: '', file: ARTIFACT_FILENAME, type: 'zip']],
-			  credentialsId: NEXUS_CREDSID,
-			  groupId: NEXUS_GROUP,
-			  nexusUrl: NEXUS_SERVER,
-			  nexusVersion: 'nexus3',
-			  protocol: 'https',
-			  repository: NEXUS_REPOSITORY,
-			  version: TARGET_VERSION
+			nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit', classifier: '', file: 'DemoNunit.zip', type: 'zip']],
+			credentialsId: 'NexusRepoCredentials', 
+			groupId: 'maven-public', 
+			nexusUrl: 'localhost:9091',
+			nexusVersion: 'nexus3',
+			protocol: 'http',
+			repository: 'maven-central',
+			version: '1.0'
 		  }
 		}
 
