@@ -66,10 +66,8 @@ pipeline {
 		 stage( "tag the commit with date time" ) {			  
 		  steps{
 			echo 'Tagging this version and pushing tag to remote repository'
-			bat "git tag ${VERSION_TAG}"	
-			sshagent(["${GitCredentialsID}"]) {	
-				bat "git push --tags"			
-			}
+			bat "git tag ${VERSION_TAG}"				
+			bat "git push --tag"						
 		  }
 		}
 		
