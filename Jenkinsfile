@@ -67,7 +67,7 @@ pipeline {
 		  steps{
 			echo 'Tagging this version and pushing tag to remote repository'
 			bat "git tag ${VERSION_TAG}"				
-			bat "git push --tag"						
+			bat "git push origin ${VERSION_TAG}"						
 		  }
 		}
 		
