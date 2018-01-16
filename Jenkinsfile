@@ -16,7 +16,8 @@ pipeline {
 	NEXUS_REPOSITORY="maven-central"
     NEXUS_GROUP="maven-public"
 	TARGET_VERSION=''
-	VERSION_TAG=''
+	VERSION_TAG='v1.0'
+	GIT_PROJECT="rahoodroshan/NunitDemo"
 	}
     stages 
 	{
@@ -61,6 +62,16 @@ pipeline {
 				"C:\\Program Files (x86)\\Jenkins\\workspace\\JenkinsFileSample\\packages\\ReportUnit.1.2.1\\tools\\ReportUnit.exe" "Reporting" "Reporting\\Result"'''
 			}
 		}//End Build source code 	
+		
+		 stage( "tag the commit with date time" ) {	
+		  steps{
+			echo 'Tagging this version and pushing tag to remote repository'
+			bat "git tag -a ${VERSION_TAG} -m 'Release Candidate ${VERSION_TAG}' "
+			
+			bat "git push git@github.com:${GIT_PROJECT}.git --tags"
+			
+		  }
+		}
 		
 		stage( 'Package into zip file' ) 
 		{
