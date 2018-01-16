@@ -16,7 +16,7 @@ pipeline {
 	NEXUS_REPOSITORY="maven-central"
     NEXUS_GROUP="maven-public"
 	TARGET_VERSION=''
-	VERSION_TAG="v1.5"
+	VERSION_TAG="v1.6"
 	GIT_PROJECT="rahoodroshan/NunitDemo"
 	}
     stages 
