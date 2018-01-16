@@ -66,8 +66,8 @@ pipeline {
 		 stage( "tag the commit with date time" ) {			  
 		  steps{
 			echo 'Tagging this version and pushing tag to remote repository'
-			bat "git tag -a ${VERSION_TAG} -m 'Release Candidate ${VERSION_TAG}' "			
-			bat "git push git@github.com:${GIT_PROJECT}.git --tags"			
+			bat "git tag ${VERSION_TAG}"			
+			//bat "git push git@github.com:${GIT_PROJECT}.git --tags"			
 		  }
 		}
 		
