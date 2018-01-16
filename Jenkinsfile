@@ -16,7 +16,7 @@ pipeline {
 	NEXUS_REPOSITORY="maven-central"
     NEXUS_GROUP="maven-public"
 	TARGET_VERSION=''
-	VERSION_TAG="v1.3"
+	VERSION_TAG="v1.4"
 	GIT_PROJECT="rahoodroshan/NunitDemo"
 	}
     stages 
@@ -67,9 +67,9 @@ pipeline {
 		  steps{
 			echo 'Tagging this version and pushing tag to remote repository'
 			bat "git tag ${VERSION_TAG}"	
-					
+			sshagent(["${GitCredentialsID}"]) {	
 				bat "git push --tags"			
-			
+			}
 		  }
 		}
 		
