@@ -69,12 +69,16 @@ pipeline {
 			//bat "git tag -a ${VERSION_TAG} -m 'Jenkins'"								
 			//bat "git push https://github.com/${GIT_PROJECT}.git --tags"
 			
-				bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")
+				//bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")
 
-				 sshagent (credentials: ['GIT_SSH_CRED']) 
-				 {
-					bat "git push ssh://github.com/${GIT_PROJECT}.git --tags"
-				 }	
+				// sshagent (credentials: ['GIT_SSH_CRED']) 
+				// {
+				//	bat "git push ssh://github.com/${GIT_PROJECT}.git --tags"
+				// }	
+			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'GitCredentialsID', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
+				bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")
+				bat("git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/rahoodroshan/NunitDemo.git --tags")
+				}
 			}			 
 		}
 			
