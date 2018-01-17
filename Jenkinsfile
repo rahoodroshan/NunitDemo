@@ -13,7 +13,7 @@ pipeline {
 	NEXUS_REPOSITORY="maven-central"
     NEXUS_GROUP="maven-public"
 	TARGET_VERSION=''
-	VERSION_TAG="v1.12"
+	VERSION_TAG="v1.13"
 	GIT_PROJECT="rahoodroshan/NunitDemo"
 	}
     stages 
@@ -67,7 +67,7 @@ pipeline {
 			//bat "git push origin ${VERSION_TAG}"	
 			  bat "git tag -a ${VERSION_TAG} -m 'Jenkins'"				
 				
-			 bat "git push https://git@github.com:${GIT_PROJECT}.git --tags"
+			 bat "git push https://github.com:${GIT_PROJECT}.git --tags"
 				
 			}
 		}
