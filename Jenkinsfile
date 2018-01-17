@@ -61,7 +61,7 @@ pipeline {
 		stage( "Tag the commit" ) 
 		{			  
 			steps
-			{
+			{}
 			//echo 'Tagging this version and pushing tag to remote repository'
 			//bat "git tag ${VERSION_TAG}"				
 			//bat "git push origin ${VERSION_TAG}"	
@@ -73,7 +73,8 @@ pipeline {
 
 			 sshagent (credentials: ['GIT_SSH_CRED']) {
 				sh "git push git@github.com:${GIT_PROJECT}.git --tags"
-			  }						
+			  }		
+			}				  
 		}
 			
 		stage( 'Package into zip file' ) 
