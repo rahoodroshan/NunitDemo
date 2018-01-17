@@ -57,6 +57,21 @@ pipeline {
 				"C:\\Program Files (x86)\\Jenkins\\workspace\\JenkinsFileSample\\packages\\ReportUnit.1.2.1\\tools\\ReportUnit.exe" "Reporting" "Reporting\\Result"'''
 			}
 		}
+		
+		stage( "Tag the commit" ) {			  
+		  steps{
+			//echo 'Tagging this version and pushing tag to remote repository'
+			//bat "git tag ${VERSION_TAG}"				
+			//bat "git push origin ${VERSION_TAG}"		
+				
+				
+			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'GitCredentialsID', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
+
+				bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")
+				bat("git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@rahoodroshan/NunitDemo --tags")
+			}
+		  }
+		}
 				
 		stage( 'Package into zip file' ) 
 		{		
