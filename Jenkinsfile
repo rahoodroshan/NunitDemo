@@ -13,7 +13,7 @@ pipeline {
 	NEXUS_REPOSITORY="maven-central"
     NEXUS_GROUP="maven-public"
 	TARGET_VERSION=''
-	VERSION_TAG="v1.23"
+	VERSION_TAG="v1.24"
 	GIT_PROJECT="rahoodroshan/NunitDemo"
 	}
     stages 
@@ -70,11 +70,10 @@ pipeline {
 			//bat "git push https://github.com/${GIT_PROJECT}.git --tags"
 			
 			bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")
-				
-			 sshagent(['GIT_SSH_CRED']) {				
-				bat "git push git@github.com:${GIT_PROJECT}.git --tags"
-				}
-			}
+
+			 sshagent (credentials: ['GIT_SSH_CRED']) {
+				sh "git push git@github.com:${GIT_PROJECT}.git --tags"
+			  }						
 		}
 			
 		stage( 'Package into zip file' ) 
