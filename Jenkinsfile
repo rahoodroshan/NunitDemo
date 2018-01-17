@@ -73,7 +73,7 @@ pipeline {
 
 				 sshagent (credentials: ['GIT_SSH_CRED']) 
 				 {
-					bat "git push ssh://git@github.com:${GIT_PROJECT}.git --tags"
+					bat "git push ssh://github.com/${GIT_PROJECT}.git --tags"
 				 }	
 			}			 
 		}
