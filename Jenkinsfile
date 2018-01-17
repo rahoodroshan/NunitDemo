@@ -13,7 +13,7 @@ pipeline {
 	NEXUS_REPOSITORY="maven-central"
     NEXUS_GROUP="maven-public"
 	TARGET_VERSION=''
-	VERSION_TAG="v1.29"
+	VERSION_TAG="v1.30"
 	GIT_PROJECT="rahoodroshan/NunitDemo"
 	}
     stages 
@@ -77,7 +77,7 @@ pipeline {
 				// }	
 			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'GitCredentialsID', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
 				bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")
-				bat("git push origin  https://github.com/rahoodroshan/NunitDemo.git  --tags")
+				bat("git push origin --tags")
 				}
 			}			 
 		}
