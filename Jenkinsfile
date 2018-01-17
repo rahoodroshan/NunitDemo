@@ -13,7 +13,7 @@ pipeline {
 	NEXUS_REPOSITORY="maven-central"
     NEXUS_GROUP="maven-public"
 	TARGET_VERSION=''
-	VERSION_TAG="v1.14"
+	VERSION_TAG="v1.15"
 	GIT_PROJECT="rahoodroshan/NunitDemo"
 	}
     stages 
@@ -65,10 +65,15 @@ pipeline {
 			//echo 'Tagging this version and pushing tag to remote repository'
 			//bat "git tag ${VERSION_TAG}"				
 			//bat "git push origin ${VERSION_TAG}"	
-			 bat "git tag -a ${VERSION_TAG} -m 'Jenkins'"				
+			
+			//bat "git tag -a ${VERSION_TAG} -m 'Jenkins'"								
+			//bat "git push https://github.com/${GIT_PROJECT}.git --tags"
 				
-			 bat "git push https://github.com/${GIT_PROJECT}.git --tags"
-				
+			withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'GitCredentialsID', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
+
+				bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")
+				bat("git push https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}/@github.com/rahoodroshan/NunitDemo.git --tags")
+				}
 			}
 		}
 				
