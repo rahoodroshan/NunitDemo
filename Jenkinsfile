@@ -13,7 +13,7 @@ pipeline {
 	NEXUS_REPOSITORY="maven-central"
     NEXUS_GROUP="maven-public"
 	TARGET_VERSION=''
-	VERSION_TAG="v1.24"
+	VERSION_TAG="v1.25"
 	GIT_PROJECT="rahoodroshan/NunitDemo"
 	}
     stages 
@@ -73,7 +73,7 @@ pipeline {
 
 				 sshagent (credentials: ['GIT_SSH_CRED']) 
 				 {
-					bat "git push git@github.com:${GIT_PROJECT}.git --tags"
+					bat "ssh git push git@github.com:${GIT_PROJECT}.git --tags"
 				 }	
 			}			 
 		}
