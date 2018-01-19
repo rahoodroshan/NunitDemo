@@ -79,10 +79,12 @@ pipeline {
 				//bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")
 				//bat("git push origin --tags")
 				//}
-				sshagent (credentials: ['GIT_SSH_CRED']) {
-					sh("git tag -a ${VERSION_TAG} -m 'Jenkins'")
-					sh('git push https://github.com/rahoodroshan/NunitDemo.git --tags')
+				
+				bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")				
+				sshagent(['GIT_SSH_CRED']) {					
+					bat('git push https://github.com/rahoodroshan/NunitDemo.git --tags')
 				}
+
 			}			 
 		}
 			
