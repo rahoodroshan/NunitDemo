@@ -13,7 +13,7 @@ pipeline {
 	NEXUS_REPOSITORY="maven-central"
     NEXUS_GROUP="maven-public"
 	TARGET_VERSION=''
-	VERSION_TAG="v1.35"
+	VERSION_TAG="v1.36"
 	GIT_PROJECT="rahoodroshan/NunitDemo"
 	}
     stages 
@@ -46,6 +46,35 @@ pipeline {
 			}
 		}
 		
+		stage( "Tag the commit" ) 
+		{			  
+			steps
+			{
+			//echo 'Tagging this version and pushing tag to remote repository'
+			//bat "git tag ${VERSION_TAG}"				
+			//bat "git push origin ${VERSION_TAG}"	
+			
+			//bat "git tag -a ${VERSION_TAG} -m 'Jenkins'"								
+			//bat "git push https://github.com/${GIT_PROJECT}.git --tags"
+			
+				//bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")
+
+				// sshagent (credentials: ['GIT_SSH_CRED']) 
+				// {
+				//	bat "git push ssh://github.com/${GIT_PROJECT}.git --tags"
+				// }	
+				//withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'GitCredentialsID', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD']]) {
+				//bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")
+				//bat("git push origin --tags")
+				//}
+				
+				bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")				
+				sshagent(['GIT_SSH_CRED']) {					
+					bat('git push https://github.com/rahoodroshan/NunitDemo.git --tags')
+				}
+
+			}			 
+		}
 		stage( 'Test' ) 
 		{	
 		  steps
@@ -86,7 +115,7 @@ pipeline {
 			nexusVersion: 'nexus3',
 			protocol: 'http',
 			repository: 'NewRepo',
-			version: '1.4'
+			version: '1.5'
 		  }
 		}
 	}
