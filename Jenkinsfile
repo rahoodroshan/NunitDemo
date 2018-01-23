@@ -9,7 +9,7 @@ pipeline {
 	// Application Specific    
 	NEXUS_ARTIFACTID="DemoNunit"
 	NEXUS_IQ_STAGE="release"
-	ARTIFACT_FILENAME="DemoNunit.zip"
+	ARTIFACT_FILENAME="NunitDemo"
 	NEXUS_REPOSITORY="maven-central"
 	NEXUS_GROUP="maven-public"
 	TARGET_VERSION=''
@@ -73,8 +73,8 @@ pipeline {
 							keepAll: false, 
 							reportDir: 'CodeCoverageReport', 
 							reportFiles: 'index.htm', 
-							reportName: 'Code Coverage Reports', 
-							reportTitles: 'Code Coverage Reports'])		
+							reportName: 'Code Coverage Report', 
+							reportTitles: 'Code Coverage Report'])		
 				}
 		} // End Publishing Code Coverage Report
 		
