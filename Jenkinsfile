@@ -111,12 +111,12 @@ pipeline {
 			steps{
 				nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit', classifier: '', file: 'DemoNunit.zip', type: 'zip']],
 				credentialsId: 'NexusRepoCredentials', 
-				groupId: 'maven-public', 
+				groupId: 'NunitDemoRelease', 
 				nexusUrl: 'localhost:9091',
 				nexusVersion: 'nexus3',
 				protocol: 'http',
-				repository: 'NewRepo',
-				version: '1.5'
+				repository: 'NunitDemoRepo',
+				version: '1.0'
 			}
 		}//End Upload zip with Nexus Repo
 	}
