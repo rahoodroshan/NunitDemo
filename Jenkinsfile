@@ -65,6 +65,29 @@ pipeline {
 			}
 		}//End Package source code
 
+		stage( "Publishing Code Coverage Report") {
+		  // Publishing Code Coverage Report
+				publishHTML([allowMissing: false, 
+							alwaysLinkToLastBuild: false, 
+							keepAll: false, 
+							reportDir: 'CodeCoverageReport', 
+							reportFiles: 'index.htm', 
+							reportName: 'HTML Report', 
+							reportTitles: 'Code Coverage Report'])
+		} // End Publishing Code Coverage Report
+		
+		
+		stage( "Publishing Nunit Report") {
+		  // Publishing Code Coverage Report
+				publishHTML([allowMissing: false, 
+							alwaysLinkToLastBuild: false, 
+							keepAll: false, 
+							reportDir: 'Reporting/Result', 
+							reportFiles: 'index.html', 
+							reportName: 'HTML Report', 
+							reportTitles: 'Nunit Reports'])
+		} // End Publishing Code Coverage Report
+		
 		stage( "IQ Scans") 
 		{
 		//Scan zip with IQ
