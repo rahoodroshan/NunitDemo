@@ -9,7 +9,7 @@ pipeline {
 	// Application Specific    
 	NEXUS_ARTIFACTID="DemoNunit"
 	NEXUS_IQ_STAGE="release"
-	ARTIFACT_FILENAME="NunitDemo"
+	ARTIFACT_FILENAME="DemoNunit.zip"
 	NEXUS_REPOSITORY="maven-central"
 	NEXUS_GROUP="maven-public"
 	TARGET_VERSION=''
