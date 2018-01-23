@@ -67,6 +67,7 @@ pipeline {
 
 		stage( "Publishing Code Coverage Report") {
 		  // Publishing Code Coverage Report
+			steps{
 				publishHTML([allowMissing: false, 
 							alwaysLinkToLastBuild: false, 
 							keepAll: false, 
@@ -74,11 +75,13 @@ pipeline {
 							reportFiles: 'index.htm', 
 							reportName: 'HTML Report', 
 							reportTitles: 'Code Coverage Report'])
+				}
 		} // End Publishing Code Coverage Report
 		
 		
 		stage( "Publishing Nunit Report") {
 		  // Publishing Code Coverage Report
+			steps{
 				publishHTML([allowMissing: false, 
 							alwaysLinkToLastBuild: false, 
 							keepAll: false, 
@@ -86,6 +89,7 @@ pipeline {
 							reportFiles: 'index.html', 
 							reportName: 'HTML Report', 
 							reportTitles: 'Nunit Reports'])
+				}
 		} // End Publishing Code Coverage Report
 		
 		stage( "IQ Scans") 
