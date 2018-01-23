@@ -67,15 +67,14 @@ pipeline {
 
 		stage( "Publishing Code Coverage Report") {
 		  // Publishing Code Coverage Report
-			steps{
-					publishHTML target: [
-						allowMissing: false,
-						alwaysLinkToLastBuild: true,
-						keepAll: false,
-						reportDir: 'CodeCoverageReport',
-						reportFiles: 'index.html',
-						reportName: 'Code Coverage Report'
-						]			
+			steps{					
+				publishHTML([allowMissing: false, 
+							alwaysLinkToLastBuild: true, 
+							keepAll: false, 
+							reportDir: 'CodeCoverageReport', 
+							reportFiles: 'index.htm', 
+							reportName: 'Code Coverage Reports', 
+							reportTitles: 'Code Coverage Reports'])		
 				}
 		} // End Publishing Code Coverage Report
 		
@@ -88,7 +87,7 @@ pipeline {
 							keepAll: false, 
 							reportDir: 'Reporting/Result', 
 							reportFiles: 'index.html', 
-							reportName: 'HTML Report', 
+							reportName: 'Nunit Report', 
 							reportTitles: 'Nunit Reports'])
 				}
 		} // End Publishing Code Coverage Report
