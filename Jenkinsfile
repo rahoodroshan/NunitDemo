@@ -13,7 +13,7 @@ pipeline {
 	NEXUS_REPOSITORY="maven-central"
 	NEXUS_GROUP="maven-public"
 	TARGET_VERSION=''
-	VERSION_TAG="v1.42"
+	VERSION_TAG="v1.44"
 	GIT_PROJECT="rahoodroshan/NunitDemo"
 	}
 	stages 
@@ -64,6 +64,19 @@ pipeline {
 				bat '"C:\\Program Files\\7-Zip\\7z.exe" a  -r DemoNunit.zip -w NunitDemo.Test\\bin\\Release\\* -mem=AES256'
 			}
 		}//End Package source code
+
+		
+		stage( "Tag the commit" ) 
+		{			  
+			steps
+			{			
+				bat("git tag -a ${VERSION_TAG} -m 'Jenkins'")				
+				sshagent(['ssh-agent-ssh-key']) {					
+					bat('git push https://github.com/rahoodroshan/NunitDemo.git --tags')
+				}
+
+			}			 
+		}
 
 		stage( "Publishing Code Coverage Report") {
 		  // Publishing Code Coverage Report
