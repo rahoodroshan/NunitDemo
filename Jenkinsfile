@@ -69,7 +69,7 @@ pipeline {
 			steps{					
 				publishHTML([allowMissing: false, 
 							alwaysLinkToLastBuild: true, 
-							keepAll: false, 
+							keepAll: true, 
 							reportDir: 'CodeCoverageReport', 
 							reportFiles: 'index.htm', 
 							reportName: 'Code Coverage Report', 
@@ -83,7 +83,7 @@ pipeline {
 			steps{
 				publishHTML([allowMissing: false, 
 							alwaysLinkToLastBuild: true, 
-							keepAll: false, 
+							keepAll: true, 
 							reportDir: 'Reporting/Result', 
 							reportFiles: 'index.html', 
 							reportName: 'Nunit Report', 
