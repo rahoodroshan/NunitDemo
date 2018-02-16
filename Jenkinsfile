@@ -98,7 +98,7 @@ pipeline {
 				bat "echo 'Uploading to IQ: ${NEXUS_ARTIFACTID} stage: ${NEXUS_IQ_STAGE} file: ${ARTIFACT_FILENAME}'"
 				nexusPolicyEvaluation failBuildOnNetworkError: false, 
 					iqApplication: 'DemoNunit', 
-					iqScanPatterns: [[scanPattern: '**/*.exe']], 
+					iqScanPatterns: [[scanPattern: '*.exe']], 
 					iqStage: 'build', 
 					jobCredentialsId: ''
 			}
