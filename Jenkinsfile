@@ -99,7 +99,7 @@ pipeline {
 				nexusPolicyEvaluation failBuildOnNetworkError: false, 
 					iqApplication: 'DemoNunit', 
 					iqScanPatterns: [[scanPattern: '*.exe']], 
-					iqStage: 'build', 
+					iqStage: 'release', 
 					jobCredentialsId: ''
 			}
 		}//End Scan zip with IQ 			
