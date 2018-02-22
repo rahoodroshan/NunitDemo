@@ -109,7 +109,7 @@ pipeline {
 		//Upload zip with Nexus Repo
 			steps{
 				bat "echo 'NexusCredentials:${NEXUS_SECRET_ACCESS_KEY}'"
-				nexusArtifactUploader artifacts: [[artifactId: 'NEXUS_ARTIFACT_ID', classifier: '', file: 'NEXUS_ARTIFACT_FILENAME', type: 'zip']],
+				nexusArtifactUploader artifacts: [[artifactId: 'NEXUS_ARTIFACT_ID', classifier: '', file: 'DemoNunit.zip', type: 'zip']],
 				credentialsId: 'NexusRepoCredentials', 
 				groupId: 'NEXUS_GROUP', 
 				nexusUrl: 'NEXUS_URL',
