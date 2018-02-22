@@ -109,7 +109,7 @@ pipeline {
 		//Upload zip with Nexus Repo
 			steps{
 				nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit', classifier: '', file: 'DemoNunit.zip', type: 'zip']],
-				credentialsId: 'NexusRepoCredentials', 
+				credentialsId: '', 
 				groupId: 'NunitDemoRelease', 
 				nexusUrl: 'localhost:9091',
 				nexusVersion: 'nexus3',
