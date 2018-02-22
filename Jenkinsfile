@@ -6,15 +6,14 @@ pipeline {
 	}
 	environment {
 
-	// Application Specific    
-	NEXUS_ARTIFACTID="DemoNunit"
+	// Application Specific    	
+	NEXUS_ARTIFACT_ID="DemoNunit"
+	NEXUS_ARTIFACT_FILENAME="DemoNunit.zip"
 	NEXUS_IQ_STAGE="release"
-	ARTIFACT_FILENAME="DemoNunit.zip"
-	NEXUS_REPOSITORY="maven-central"
-	NEXUS_GROUP="maven-public"
-	TARGET_VERSION=''
-	VERSION_TAG="v1.44"
-	GIT_PROJECT="rahoodroshan/NunitDemo"
+	NEXUS_REPOSITORY="NunitDemoRepo"
+	NEXUS_GROUP="NunitDemoRelease"
+	NEXUS_URL="localhost:9091"
+	NEXUS_IQ_APPLICATION="DemoNunit"	
 	NEXUS_SECRET_ACCESS_KEY = credentials('NexusRepoCredentials')
 	}
 	stages 
@@ -96,12 +95,12 @@ pipeline {
 		{
 		//Scan zip with IQ
 			steps{
-				bat "echo 'Uploading to IQ: ${NEXUS_ARTIFACTID} stage: ${NEXUS_IQ_STAGE} file: ${ARTIFACT_FILENAME} BuildNumber: ${BUILD_NUMBER}'"
+				bat "echo 'Uploading to IQ: ${NEXUS_ARTIFACT_ID} stage: ${NEXUS_IQ_STAGE} file: ${NEXUS_ARTIFACT_FILENAME} BuildNumber: ${BUILD_NUMBER}'"
 				nexusPolicyEvaluation failBuildOnNetworkError: false, 
-					iqApplication: 'DemoNunit', 
-					iqScanPatterns: [[scanPattern: '**/*.dll']], 
-					iqStage: 'release', 
-					jobCredentialsId: ''
+				iqApplication: 'NEXUS_IQ_APPLICATION', 
+				iqScanPatterns: [[scanPattern: '**/*.dll']], 
+				iqStage: 'NEXUS_IQ_STAGE', 
+				jobCredentialsId: ''
 			}
 		}//End Scan zip with IQ 			
 
@@ -110,14 +109,14 @@ pipeline {
 		//Upload zip with Nexus Repo
 			steps{
 				bat "echo 'NexusCredentials:${NEXUS_SECRET_ACCESS_KEY}'"
-				nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit', classifier: '', file: 'DemoNunit.zip', type: 'zip']],
-					credentialsId: 'NexusRepoCredentials', 
-				groupId: 'NunitDemoRelease', 
-				nexusUrl: 'localhost:9091',
+				nexusArtifactUploader artifacts: [[artifactId: 'NEXUS_ARTIFACT_ID', classifier: '', file: 'NEXUS_ARTIFACT_FILENAME', type: 'zip']],
+				credentialsId: 'NexusRepoCredentials', 
+				groupId: 'NEXUS_GROUP', 
+				nexusUrl: 'NEXUS_URL',
 				nexusVersion: 'nexus3',
 				protocol: 'http',
-				repository: 'NunitDemoRepo',
-				version: '${BUILD_NUMBER}'
+				repository: 'NEXUS_REPOSITORY',
+				version: 'BUILD_NUMBER'
 			}
 		}//End Upload zip with Nexus Repo
 	}
