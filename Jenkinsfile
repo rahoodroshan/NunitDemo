@@ -95,7 +95,7 @@ pipeline {
 		{
 		//Scan zip with IQ
 			steps{
-				bat "echo 'Uploading to IQ: ${NEXUS_ARTIFACTID} stage: ${NEXUS_IQ_STAGE} file: ${ARTIFACT_FILENAME} ChangeId: ${CHANGE_ID}'"
+				bat "echo 'Uploading to IQ: ${NEXUS_ARTIFACTID} stage: ${NEXUS_IQ_STAGE} file: ${ARTIFACT_FILENAME} BuildNumber: ${BUILD_NUMBER}'"
 				nexusPolicyEvaluation failBuildOnNetworkError: false, 
 					iqApplication: 'DemoNunit', 
 					iqScanPatterns: [[scanPattern: '**/*.dll']], 
