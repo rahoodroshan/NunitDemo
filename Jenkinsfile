@@ -15,6 +15,7 @@ pipeline {
 	TARGET_VERSION=''
 	VERSION_TAG="v1.44"
 	GIT_PROJECT="rahoodroshan/NunitDemo"
+	NEXUS_SECRET_ACCESS_KEY = credentials('NexusRepoCredentials')
 	}
 	stages 
 	{
@@ -109,7 +110,7 @@ pipeline {
 		//Upload zip with Nexus Repo
 			steps{
 				nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit', classifier: '', file: 'DemoNunit.zip', type: 'zip']],
-				credentialsId: '', 
+				credentialsId: 'NEXUS_SECRET_ACCESS_KEY', 
 				groupId: 'NunitDemoRelease', 
 				nexusUrl: 'localhost:9091',
 				nexusVersion: 'nexus3',
