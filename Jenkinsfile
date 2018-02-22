@@ -111,7 +111,7 @@ pipeline {
 			steps{
 				bat "echo 'NexusCredentials:${NEXUS_SECRET_ACCESS_KEY}'"
 				nexusArtifactUploader artifacts: [[artifactId: 'DemoNunit', classifier: '', file: 'DemoNunit.zip', type: 'zip']],
-					credentialsId: '${NEXUS_SECRET_ACCESS_KEY}', 
+					credentialsId: 'NexusRepoCredentials', 
 				groupId: 'NunitDemoRelease', 
 				nexusUrl: 'localhost:9091',
 				nexusVersion: 'nexus3',
