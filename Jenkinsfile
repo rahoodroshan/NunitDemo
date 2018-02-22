@@ -98,17 +98,16 @@ pipeline {
 				bat "echo 'Uploading to IQ: ${NEXUS_ARTIFACT_ID} stage: ${NEXUS_IQ_STAGE} file: ${NEXUS_ARTIFACT_FILENAME} BuildNumber: ${BUILD_NUMBER}'"
 				nexusPolicyEvaluation failBuildOnNetworkError: false, 
 					iqApplication: "${NEXUS_IQ_APPLICATION}", 
-				iqScanPatterns: [[scanPattern: '**/*.dll']], 
+					iqScanPatterns: [[scanPattern: '**/*.dll']], 
 					iqStage: "${NEXUS_IQ_STAGE}", 
-				jobCredentialsId: ''
+					jobCredentialsId: ''
 			}
 		}//End Scan zip with IQ 			
 
 		stage( "Upload to Nexus" ) 
 		{
 		//Upload zip with Nexus Repo
-			steps{
-				bat "echo 'NexusCredentials:${NEXUS_SECRET_ACCESS_KEY}'"
+			steps{				
 				nexusArtifactUploader artifacts: [[artifactId: "${NEXUS_ARTIFACT_ID}", classifier: '', file: "${NEXUS_ARTIFACT_FILENAME}", type: 'zip']],
 					credentialsId: 'NexusRepoCredentials', 
 					groupId: "${NEXUS_GROUP}", 
