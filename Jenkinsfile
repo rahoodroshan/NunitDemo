@@ -115,7 +115,7 @@ pipeline {
 				nexusVersion: 'nexus3',
 				protocol: 'http',
 				repository: 'NunitDemoRepo',
-				version: '1.0'
+				version: '${BUILD_NUMBER}'
 			}
 		}//End Upload zip with Nexus Repo
 	}
